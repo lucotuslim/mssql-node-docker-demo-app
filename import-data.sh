@@ -2,7 +2,7 @@
 #do this in a loop because the timing for when the SQL instance is ready is indeterminate
 for i in {1..50};
 do
-    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Yukon900 -d master -i setup.sql
+    /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P Yukon900 -d master -C -i setup.sql
     if [ $? -eq 0 ]
     then
         echo "setup.sql completed"
@@ -14,4 +14,4 @@ do
 done
 
 #import the data from the csv file
-/opt/mssql-tools/bin/bcp DemoData.dbo.Products in "/usr/src/app/Products.csv" -c -t',' -S localhost -U sa -P Yukon900
+#/opt/mssql-tools/bin/bcp DemoData.dbo.Products in "/usr/src/app/Products.csv" -c -t',' -S localhost -U sa -P Yukon900
